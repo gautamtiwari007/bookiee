@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./App.module.css";
 import MainHeading from "./components/MainHeading";
-import Home from "./components/navbar/Home";
-import Products from "./components/navbar/Products"
-import Sell from "./components/navbar/Sell";
-import Shop from "./components/navbar/Shop";
+import Header from "./components/Header/Header";
+import Auth from "./components/Authentication/Auth";
 
 function App() {
+
+  const [authIsShown, setAuthIsShown] = useState(false);
+
+  const showCardHandler = () => {
+    setAuthIsShown(true);
+  };
+
+  const hideCardHandler = () => {
+    setAuthIsShown(false);
+  };
+
   return (
     <React.Fragment>
-      <a className={classes.logo} href="#">LOGO</a>
-      <Home />
-      <Shop />
-      <Products />
-      <Sell />
+      <a className={classes.logo} href="www.google.com">LOGO</a>
+      {authIsShown && <Auth onClose={hideCardHandler} />}
+      <Header onShowAuth={showCardHandler} />
       <MainHeading />
     </React.Fragment>
   );
